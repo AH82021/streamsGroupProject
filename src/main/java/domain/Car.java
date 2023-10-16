@@ -1,5 +1,11 @@
 package domain;
 
+import data.FetchData;
+
+import java.io.IOException;
+import java.util.List;
+
+// our car class with ll data
 public class Car {
     private final Integer id;
     private final String make;
@@ -8,7 +14,8 @@ public class Car {
     private final Double price;
     private final String color;
 
-    public Car(Integer id, String make, String model, Integer year, Double price, String color) {
+
+    public Car(Integer id, String make, String model, Integer year, Double price, String color) throws IOException {
         this.id = id;
         this.make = make;
         this.model = model;
@@ -40,6 +47,8 @@ public class Car {
     public String getColor() {
         return color;
     }
+
+    //List<Car> carList = FetchData.getCarList();
 
     @Override
     public String toString() {

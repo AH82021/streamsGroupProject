@@ -1,5 +1,6 @@
 package data;
-
+// 500 cars details
+//students data
 import com.google.common.io.Resources;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;

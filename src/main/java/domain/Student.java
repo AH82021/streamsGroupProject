@@ -1,25 +1,58 @@
 package domain;
 import java.time.LocalDate;
 
-import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
 
+// student class with all things
 public class Student {
-
     private final Integer id;
     private final String first_name;
     private final String last_name;
     private final String email;
     private final String gender;
     private final LocalDate dob;
+    private final Integer age;
 
-    public Student(Integer id, String first_name, String last_name, String email, String gender, String dob) {
+
+
+
+    public Student(Integer id, String first_name, String last_name, String email, String gender, String dob, Integer age) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.gender = gender;
-        this.dob = LocalDate.parse(dob);
+        this.dob = LocalDate.ofEpochDay(Age(LocalDate.parse(dob)));
+        this.age = age;
     }
+// Method for getting age from DOB.
+    public static Integer Age(LocalDate dob){
+
+        LocalDate currentDate = LocalDate.now();
+        int age = Period.between(dob,currentDate).getYears();
+        return age;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public static List<Student> getStudents() {
+        return students;
+    }
+
+    // Created method for getting age from DOB
+
+
+    //Create enum for Gender -> (Question 11)
+   // public static enum Gender {
+      //  MALE,
+
+    //}
+
+
+
 
     public Integer getId() {
         return id;
@@ -44,6 +77,10 @@ public class Student {
     public LocalDate getDob() {
         return dob;
     }
+
+
+    public static List<Student> students;
+
 
     @Override
     public String toString() {

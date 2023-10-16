@@ -76,14 +76,14 @@ class CarOpsTest {
         assertEquals("VOLKSWAGEN", uppercaseMakes.get(2));
 
     }
-//    @Test
-//    void sortCarsByYear() {
-//        List<Car> sortedCars = CarOps.sortCarsByYear(cars);
-//        List<Integer> sortedYears = sortedCars.stream()
-//                .map(Car::getYear)
-//                .collect(Collectors.toList());
-//        assertEquals( 1968, sortedYears);
-//    }
+    @Test
+    void sortCarsByYear() {
+        List<Car> sortedCars = CarOps.sortCarsByYear(cars);
+        List<Integer> sortedYears = sortedCars.stream()
+                .map(Car::getYear)
+                .collect(Collectors.toList());
+        assertEquals( 1985, sortedYears.get(20));
+    }
 
     @Test
     void countCarsByMake() {

@@ -1,10 +1,5 @@
 [
-  {"id":1,
-    "first_name":"Kaitlyn",
-    "last_name":"Padden",
-    "email":"kpadden0@utexas.edu",
-    "gender":"Female",
-    "dob":"1986-01-20"},
+  {"id":1, "first_name":"Kaitlyn", "last_name":"Padden", "email":"kpadden0@utexas.edu", "gender":"Female", "dob":"1986-01-20"},
 {"id":2,"first_name":"Viviana","last_name":"Bates","email":"vbates1@prweb.com","gender":"Non-binary","dob":"2001-07-01"},
 {"id":3,"first_name":"Towny","last_name":"Dommett","email":"tdommett2@bluehost.com","gender":"Male","dob":"1995-11-03"},
 {"id":4,"first_name":"Claude","last_name":"Bernadot","email":"cbernadot3@yahoo.com","gender":"Female","dob":"2003-01-29"},

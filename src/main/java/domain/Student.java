@@ -1,9 +1,14 @@
 package domain;
-import java.time.LocalDate;
+import challenges.StudentOps;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 public class Student {
+//    public static enum Gender {
+//        MALE, FEMALE
+//    }
 
     private final Integer id;
     private final String first_name;
@@ -11,14 +16,16 @@ public class Student {
     private final String email;
     private final String gender;
     private final LocalDate dob;
+    private  int age;
 
-    public Student(Integer id, String first_name, String last_name, String email, String gender, String dob) {
+    public Student(Integer id, String first_name, String last_name, String email, String gender, String dob, int age) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.gender = gender;
         this.dob = LocalDate.parse(dob);
+        this.age = age;
     }
 
     public Integer getId() {
@@ -45,6 +52,17 @@ public class Student {
         return dob;
     }
 
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age =age;
+
+    }
+    public String getFullName() {
+        return first_name + " " + last_name;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -56,6 +74,7 @@ public class Student {
                 ", dob=" + dob +
                 '}';
     }
+
 }
 
 

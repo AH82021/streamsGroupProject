@@ -4,6 +4,7 @@ import data.FetchData;
 import domain.Student;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,35 +22,41 @@ public class StudentOps {
 
     //6. **Find Maximum Age:**
     //   Find the maximum age among all students.
-    public static OptionalInt MaxAge(List<Student> students){
-        return students.stream()
-                .mapToInt(Student::getAge)
-                .max();
+    public static Optional<Student> MaxAge() throws IOException {
+      return   FetchData.getStudentList()
+                .stream()
+                .min(Comparator.comparingInt(student -> student.getDob().getYear() - LocalDate.now().getYear()));
     }
 
     //7. **Transform to Map:**
     //   Convert the list of students into a map where the
     //   key is the student ID and the value is the student object.
-    public Map<Integer , Student> studentMap = Student.students
+    public Map<Integer , Student> studentMap = FetchData.getStudentList()
             .stream()
             .filter(Objects::nonNull)
-            .collect(Collectors.toMap(Student::getId, student -> (domain.Student) Student.getStudents()));
+            .collect(Collectors.toMap(Student::getId, student -> {
+                try {
+                    return (Student) Student.getStudents();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }));
 
  //8. **Get Student Emails:**
     //   Retrieve a list of student emails.
 
-    public static List<Student> studentByEmail(List<Student> students, String email){
-        return students.stream()
-                .filter(student -> student.getEmail().equalsIgnoreCase(email))
+    public static List<Student> studentByEmail() throws IOException {
+        return FetchData.getStudentList().stream()
+                .filter(student -> student.getEmail().equalsIgnoreCase("email"))
                 .toList();
     }
 
     //9. **Check if Any Student is Adult:**
     //   Check if any student is an adult (age 18 or older).
     static boolean AnyStudentAdult() throws IOException {
-        boolean isAdult = Student.students
+        boolean isAdult = FetchData.getStudentList()
                 .stream()
-                .anyMatch(age-> age.getAge() > 18);
+                .anyMatch(student -> student.getDob().getYear() - LocalDate.now().getYear()>18);
         return isAdult;
     }
 
@@ -58,19 +65,19 @@ public class StudentOps {
 
     //11. **Find Youngest Female Student:**
     //    Find the youngest female student.
-    public static Optional<Student> youngestStudent(){
-        return Student.students
+    public static Optional<Student> youngestStudent() throws IOException {
+        return FetchData.getStudentList()
                 .stream()
-                .min(Comparator.comparingInt(Student::getAge));
+                .max(Comparator.comparingInt(student -> student.getDob().getYear() - LocalDate.now().getYear()));
     }
 
     //12. **Join Student Names:**
     //    Join the first names of all students into a single string.
-    public static String joinFirstNames(String first_name){
-        Student.students.stream()
+    public static String joinFirstNames() throws IOException {
+        return FetchData.getStudentList().stream()
                 .map(Student::getFirst_name)
                 .collect(Collectors.joining(","));
-        return first_name;
+
     }
     //13. **Calculate Age Sum:**
     //Calculate the sum of ages for all students.
@@ -78,7 +85,7 @@ public class StudentOps {
 
     static {
         try {
-            AgeSum = FetchData.getStudentList().stream().mapToInt(Student::getAge).sum();
+            AgeSum = FetchData.getStudentList().stream().mapToInt(student -> student.getDob().getYear() - LocalDate.now().getYear()).sum();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -86,20 +93,19 @@ public class StudentOps {
 
     //14. **Check if All Students are Adults:**
     //    Check if all students are adults (age 18 or older).
-    static boolean ifAllStudentAdult(){
-        boolean areAllAdult = Student.students
+    static boolean ifAllStudentAdult() throws IOException {
+        boolean areAllAdult = FetchData.getStudentList()
                 .stream()
-                .allMatch(age-> age.getAge()>18);
+                .allMatch(student -> student.getDob().getYear() - LocalDate.now().getYear()>18);
         return  areAllAdult;
     }
 
     //15. **Find Oldest Student:**
     //    Find the oldest student.
     public static Optional<Student> oldestStudent() throws IOException {
-        return Student.students
+        return FetchData.getStudentList()
                 .stream()
-                .max(Comparator.comparingInt(Student::getAge));
-
+                .min(Comparator.comparingInt(student -> student.getDob().getYear() - LocalDate.now().getYear()));
     }
 }
 

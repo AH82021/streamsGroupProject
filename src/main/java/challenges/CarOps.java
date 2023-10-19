@@ -19,11 +19,10 @@ public class CarOps {
     //6. **Sort by Year:**
     // Sort the list of cars based on the year in ascending order.
 public static List<Car> sortedByYear() throws IOException {
-List<Car> sortedList = FetchData.getCarList()
+    return FetchData.getCarList()
         .stream()
         .sorted(Comparator.comparing(Car::getYear))
         .toList();
-return sortedList;
 }
 
 //7. **Sort by Price (descending):**

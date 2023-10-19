@@ -1,4 +1,7 @@
 package domain;
+import data.FetchData;
+
+import java.io.IOException;
 import java.time.LocalDate;
 
 import java.time.Period;
@@ -12,20 +15,18 @@ public class Student {
     private final String email;
     private final String gender;
     private final LocalDate dob;
-    private final Integer age;
+    //private final Integer age;
 
 
-
-
-    public Student(Integer id, String first_name, String last_name, String email, String gender, String dob, Integer age) {
+    public Student(Integer id, String first_name, String last_name, String email, String gender, LocalDate dob) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.gender = gender;
-        this.dob = LocalDate.ofEpochDay(Age(LocalDate.parse(dob)));
-        this.age = age;
+        this.dob = dob;
     }
+
 // Method for getting age from DOB.
     public static Integer Age(LocalDate dob){
 
@@ -34,12 +35,10 @@ public class Student {
         return age;
     }
 
-    public Integer getAge() {
-        return age;
-    }
 
-    public static List<Student> getStudents() {
-        return students;
+    public static List<Student> getStudents() throws IOException {
+       return FetchData.getStudentList();
+
     }
 
     // Created method for getting age from DOB
@@ -50,10 +49,6 @@ public class Student {
       //  MALE,
 
     //}
-
-
-
-
     public Integer getId() {
         return id;
     }
@@ -79,9 +74,7 @@ public class Student {
     }
 
 
-    public static List<Student> students;
-
-
+    //public static List<Student> students;
     @Override
     public String toString() {
         return "Student{" +
@@ -94,5 +87,6 @@ public class Student {
                 '}';
     }
 }
+
 
 

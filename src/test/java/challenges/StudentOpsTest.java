@@ -3,37 +3,48 @@ package challenges;
 import domain.Student;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 class StudentOpsTest {
 
     @Test
     void filterStudentsByGender() {
+
     }
 
     @Test
-    void maxAge() {
+    void maxAge() throws IOException {
+        System.out.println(StudentOps.MaxAge());
     }
 
     @Test
-    void studentByEmail() {
+    void studentByEmail() throws IOException {
+        System.out.println(StudentOps.studentByEmail());
     }
 
     @Test
-    void anyStudentAdult() {
+    void anyStudentAdult() throws IOException {
+        System.out.println(StudentOps.AnyStudentAdult());
     }
 
     @Test
-    void youngestStudent() {
+    void youngestStudent() throws IOException {
+        System.out.println(StudentOps.youngestStudent());
     }
 
     @Test
-    void joinFirstNames() {
+    void joinFirstNames() throws IOException {
+        System.out.println(StudentOps.joinFirstNames());
     }
 
     @Test
-    void ifAllStudentAdult() {
+    void ifAllStudentAdult() throws IOException {
+        System.out.println(StudentOps.ifAllStudentAdult());
     }
 
     @Test
-    void oldestStudent() {
+    void oldestStudent() throws IOException {
+        System.out.println(StudentOps.oldestStudent());
     }
+
 }
